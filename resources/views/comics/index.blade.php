@@ -4,6 +4,8 @@
 
     <h1>Comics</h1>
 
+    <a class="btn btn-primary" href="{{ route('comics.create') }}">Nuovo</a>
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -32,5 +34,7 @@
             @endforeach
         </tbody>
     </table>
+
+    {{ $comics->links() }}
 
 @endsection
