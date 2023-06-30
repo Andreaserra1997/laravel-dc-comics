@@ -3,29 +3,55 @@
 @section('contents')
     <h1>Inserisci un nuovo Comics</h1>
     <form method="POST" action="{{ route('comics.store') }}">
+        @csrf
         <div class="mb-3">
-            <label for="titolo" class="form-label">Titolo</label>
-            <input type="text" class="form-control" id="titolo">
+            <label for="title" class="form-label">Titolo</label>
+            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}">
+            <div class="invalid-feedback">
+                @error('title') {{ $message }} @enderror
+            </div>
         </div>
         <div class="mb-3">
-            <label for="serie" class="form-label">Serie</label>
-            <input type="text" class="form-control" id="serie">
+            <label for="series" class="form-label">Serie</label>
+            <input type="text" class="form-control @error('series') is-invalid @enderror" id="series" name="series" value="{{ old('series') }}">
+            <div class="invalid-feedback">
+                @error('series') {{ $message }} @enderror
+            </div>
         </div>
         <div class="mb-3">
-            <label for="data" class="form-label">Data</label>
-            <input type="text" class="form-control" id="data">
+            <label for="sale_date" class="form-label">Data</label>
+            <input type="text" class="form-control @error('sale_date') is-invalid @enderror" id="sale_date" name="sale_date" value="{{ old('sale_date') }}">
+            <div class="invalid-feedback">
+                @error('sale_date') {{ $message }} @enderror
+            </div>
         </div>
         <div class="mb-3">
-            <label for="prezzo" class="form-label">Prezzo</label>
-            <input type="text" class="form-control" id="prezzo">
+            <label for="price" class="form-label">Prezzo</label>
+            <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') }}">
+            <div class="invalid-feedback">
+                @error('price') {{ $message }} @enderror
+            </div>
         </div>
         <div class="mb-3">
-            <label for="src" class="form-label">Immagine</label>
-            <input type="text" class="form-control" id="src">
+            <label for="thumb" class="form-label">Immagine</label>
+            <input type="text" class="form-control @error('thumb') is-invalid @enderror" id="thumb" name="thumb" value="{{ old('thumb') }}">
+            <div class="invalid-feedback">
+                @error('thumb') {{ $message }} @enderror
+            </div>
         </div>
         <div class="mb-3">
-            <label for="descrizione" class="form-label">Descrizione</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="type" class="form-label">Tipo</label>
+            <input type="text" class="form-control @error('type') is-invalid @enderror" id="type" name="type" value="{{ old('type') }}">
+            <div class="invalid-feedback">
+                @error('type') {{ $message }} @enderror
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Descrizione</label>
+            <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="3" name="description">{{ old('description') }}</textarea>
+            <div class="invalid-feedback">
+                @error('description') {{ $message }} @enderror
+            </div>
         </div>
 
         <button class="btn btn-primary">Salva</button>
