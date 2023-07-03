@@ -4,7 +4,26 @@
 
     <h1>Comics</h1>
 
+    @if (session('delete_success'))
+        @php $comic = session('delete_success') @endphp
+        <div class="alert alert-danger">
+            Il comic "{{ $comic->title }}" è stato eliminato
+            <form action="{{ route("comics.restore", ['comic' => $comic]) }}" method="post" class="d-inline-block">
+            @csrf
+            <button class="btn btn-warning">Ripristina</button>
+            </form>
+        </div>
+    @endif
+
+    @if (session('restore_success'))
+        @php $comic = session('restore_success') @endphp
+        <div class="alert alert-success">
+            Il comic "{{ $comic->title }}" è stato ripristinato
+        </div>
+    @endif
+
     <a class="btn btn-primary" href="{{ route('comics.create') }}">Nuovo</a>
+    <a class="btn btn-primary" href="{{ route('comics.trashed') }}">Cestino</a>
 
     <table class="table table-striped">
         <thead>
@@ -28,7 +47,11 @@
                     <td>
                         <a class="btn btn-primary" href="{{ route('comics.show', ['comic' => $comic->id]) }}">Apri</a>
                         <a class="btn btn-warning" href="{{ route('comics.edit', ['comic' => $comic->id]) }}">Edita</a>
-                        <a class="btn btn-danger" href="">Cancella</a>
+                        <form action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" method="post" class="d-inline-block">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger">Cancella</button>
+                        </form>
                     </td>
                 </tr>            
             @endforeach

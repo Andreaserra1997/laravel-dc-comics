@@ -17,4 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 
+Route::get('/comics/trashed',                   [ComicController::class, 'trashed'])->name('comics.trashed');
+Route::post('/comics/{comic}/restore',          [ComicController::class, 'restore'])->name('comics.restore');
+Route::delete('/comics/{comic}/harddelete',     [ComicController::class, 'harddelete'])->name('comics.harddelete');
 Route::resource('comics', ComicController::class);
